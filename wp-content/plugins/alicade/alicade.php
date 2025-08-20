@@ -90,3 +90,4 @@ register_activation_hook(__FILE__, array($alicade, 'activate'));
 // deactivation
 register_deactivation_hook(__FILE__, array($alicade, 'deactivate'));
 // uninstall
+// register_uninstall_hook('__FILE__', array($alicade, 'uninstall'));
