@@ -48,20 +48,23 @@ if (! function_exists('add_action')) {
 
 class Alicade
 {
-    function __construct($string)
+    function __construct()
     {
-        echo $string;
+        add_action('init', array($this, 'custom_post_type'));
     }
 
     function activate()
     {
         // generate CPT
+        $this->custom_post_type();
         // flush rewrite the rules
+        flush_rewrite_rules();
     }
 
     function deactivate()
     {
         // flush rewrite the rules
+        flush_rewrite_rules();
     }
 
     function uninstall()
@@ -69,10 +72,16 @@ class Alicade
         // delete CPT
         // delete all the plugin data from the DB
     }
+
+
+    function custom_post_type()
+    {
+        register_post_type('book', ['public' => true, 'label' => 'Books']);
+    }
 }
 
 if (class_exists('Alicade')) {
-    $alicade = new Alicade("This is alicade plugin");
+    $alicade = new Alicade();
 }
 
 // activation
