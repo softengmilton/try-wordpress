@@ -31,3 +31,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 Copyright 2005-2015 Automattic, Inc.
 */
+
+// if(!defined('ABSPATH'))
+// {
+//     die;
+// }
+
+// defined('ABSPATH') or die("Hey, you can't access this file, you silly human!");
+
+
+if (! function_exists('add_action')) {
+    echo "Hey, you can't access this file, you silly human!";
+    die;
+}
