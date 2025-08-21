@@ -43,6 +43,15 @@ Copyright 2005-2015 Automattic, Inc.
 
 defined('ABSPATH') or die("Hey, you can't access this file, you silly human!");
 
+
+if (file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
+    require_once dirname(__FILE__) . '/vendor/autoload.php';
+}
+
+use Inc\Activate;
+use Inc\Deactivate;
+
+
 if (! class_exists('Alicade')) {
     class Alicade
     {
@@ -97,16 +106,26 @@ if (! class_exists('Alicade')) {
             wp_enqueue_style('mypluginstyle', plugins_url('/assets/style.css', __FILE__));
             wp_enqueue_script('mypluginscript', plugins_url('/assets/script.js', __FILE__));
         }
+
+        function activate()
+        {
+            Activate::activate();
+        }
+
+        function deactivate()
+        {
+            Deactivate::deactivate();
+        }
     }
+
+    
     $alicade = new Alicade();
     $alicade->register();
 
 
     // activation
-    require_once  plugin_dir_path(__FILE__) . 'inc/alicade-activate.php';
-    register_activation_hook(__FILE__, array('AlicadeActivate', 'activate'));
+    register_activation_hook(__FILE__, array($alicade, 'activate'));
 
     // deactivation
-    require_once  plugin_dir_path(__FILE__) . 'inc/alicade-deactivate.php';
-    register_deactivation_hook(__FILE__, array('AlicadeDeactivate', 'deactivate'));
+    register_deactivation_hook(__FILE__, array($alicade, 'deactivate'));
 }

@@ -4,7 +4,9 @@
  * @package Alicade
  */
 
-class AlicadeDeactivate
+namespace Inc;
+
+class Deactivate
 {
     public static function deactivate()
     {

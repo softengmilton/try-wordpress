@@ -4,7 +4,9 @@
  * @package Alicade
  */
 
-class AlicadeActivate
+namespace Inc;
+
+class Activate
 {
     public static function activate()
     {
