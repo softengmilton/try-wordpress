@@ -36,92 +36,46 @@ Copyright 2005-2015 Automattic, Inc.
 // {
 //     die;
 // }
+// if (! function_exists('add_action')) {
+//     echo "Hey, you can't access this file, you silly human!";
+//     die;
+// }
 
-// defined('ABSPATH') or die("Hey, you can't access this file, you silly human!");
+defined('ABSPATH') or die("Hey, you can't access this file, you silly human!");
 
-
-if (! function_exists('add_action')) {
-    echo "Hey, you can't access this file, you silly human!";
-    die;
-}
-
-
-class Alicade
-{
-    // public
-
-    // protected
-
-    // private
-
-    function __construct()
+if (! class_exists('Alicade')) {
+    class Alicade
     {
-        add_action('init', array($this, 'custom_post_type'));
-        $this->print();
+        function __construct()
+        {
+            add_action('init', array($this, 'custom_post_type'));
+        }
+
+        function register()
+        {
+            add_action('admin_enqueue_scripts', array($this, 'enqueue'));
+        }
+
+
+
+        function custom_post_type()
+        {
+            register_post_type('book', ['public' => true, 'label' => 'Books']);
+        }
+
+        function enqueue()
+        {
+            wp_enqueue_style('mypluginstyle', plugins_url('/assets/style.css', __FILE__));
+            wp_enqueue_script('mypluginscript', plugins_url('/assets/script.js', __FILE__));
+        }
     }
-
-    function register()
-    {
-        add_action('admin_enqueue_scripts', array($this, 'enqueue'));
-    }
-
-    // function register_admin_scripts()
-    // {
-    //     add_action('admin_enqueue_scripts', array($this, 'enqueue'));
-    // }
-
-    // function register()
-    // {
-    //     add_action('wp_enqueue_scripts', array($this, 'enqueue'));
-    // }
-
-    function activate()
-    {
-        // generate CPT
-        $this->custom_post_type();
-        // flush rewrite the rules
-        flush_rewrite_rules();
-    }
-
-    function deactivate()
-    {
-        // flush rewrite the rules
-        flush_rewrite_rules();
-    }
-
-    function uninstall()
-    {
-        // delete CPT
-        // delete all the plugin data from the DB
-    }
-
-    // protected function print()
-    // {
-    //     var_dump(['hi']);
-    // }
-
-
-    function custom_post_type()
-    {
-        register_post_type('book', ['public' => true, 'label' => 'Books']);
-    }
-
-    function enqueue()
-    {
-        wp_enqueue_style('mypluginstyle', plugins_url('/assets/style.css', __FILE__));
-        wp_enqueue_script('mypluginscript', plugins_url('/assets/script.js', __FILE__));
-    }
-}
-
-if (class_exists('Alicade')) {
     $alicade = new Alicade();
     $alicade->register();
+    // activation
+    require_once  plugin_dir_path(__FILE__) . 'inc/alicade-activate.php';
+    register_activation_hook(__FILE__, array('AlicadeActivate', 'activate'));
+
+    // deactivation
+    require_once  plugin_dir_path(__FILE__) . 'inc/alicade-deactivate.php';
+    register_deactivation_hook(__FILE__, array('AlicadeDeactivate', 'deactivate'));
 }
-
-// activation
-register_activation_hook(__FILE__, array($alicade, 'activate'));
-
-// deactivation
-register_deactivation_hook(__FILE__, array($alicade, 'deactivate'));
-// uninstall
-// register_uninstall_hook('__FILE__', array($alicade, 'uninstall'));
