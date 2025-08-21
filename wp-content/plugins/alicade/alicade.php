@@ -53,6 +53,21 @@ class Alicade
         add_action('init', array($this, 'custom_post_type'));
     }
 
+    function register()
+    {
+        add_action('admin_enqueue_scripts', array($this, 'enqueue'));
+    }
+
+    // function register_admin_scripts()
+    // {
+    //     add_action('admin_enqueue_scripts', array($this, 'enqueue'));
+    // }
+
+    // function register()
+    // {
+    //     add_action('wp_enqueue_scripts', array($this, 'enqueue'));
+    // }
+
     function activate()
     {
         // generate CPT
@@ -78,10 +93,17 @@ class Alicade
     {
         register_post_type('book', ['public' => true, 'label' => 'Books']);
     }
+
+    function enqueue()
+    {
+        wp_enqueue_style('mypluginstyle', plugins_url('/assets/style.css', __FILE__));
+        wp_enqueue_script('mypluginscript', plugins_url('/assets/script.js', __FILE__));
+    }
 }
 
 if (class_exists('Alicade')) {
     $alicade = new Alicade();
+    $alicade->register();
 }
 
 // activation
