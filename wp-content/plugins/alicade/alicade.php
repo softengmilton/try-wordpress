@@ -48,9 +48,16 @@ if (! function_exists('add_action')) {
 
 class Alicade
 {
+    // public
+
+    // protected
+
+    // private
+
     function __construct()
     {
         add_action('init', array($this, 'custom_post_type'));
+        $this->print();
     }
 
     function register()
@@ -87,6 +94,11 @@ class Alicade
         // delete CPT
         // delete all the plugin data from the DB
     }
+
+    // protected function print()
+    // {
+    //     var_dump(['hi']);
+    // }
 
 
     function custom_post_type()
