@@ -26,6 +26,10 @@ class Admin extends BaseController
 
         $this->addSubPages();
 
+        $this->setSettings();
+        $this->setSections();
+        $this->setFields();
+
         $this->settings->addPages($this->pages)->withSubPage('Dashboard')->addSubPages($this->subpages)->register();
     }
 
@@ -37,7 +41,7 @@ class Admin extends BaseController
                 'menu_title' => 'Alicade',
                 'capability' => 'manage_options',
                 'menu_slug'  => 'alicade',
-                'callback'   => array($this->callbacks, 'AdminDashboard'),
+                'callback'   => array($this->callbacks, 'adminDashboard'),
                 'icon_url'   => 'dashicons-store',
                 'position'   => 110,
             ),
@@ -54,9 +58,7 @@ class Admin extends BaseController
                 'menu_title' => 'Cpt',
                 'capability' => 'manage_options',
                 'menu_slug'  => 'alicade_cpt',
-                'callback'   => function () {
-                    echo '<h1>Custom Post type manager </h1>';
-                },
+                'callback'   => array($this->callbacks, 'adminCpt'),
             ),
             array(
                 'parent_slug' => 'alicade',
@@ -64,9 +66,7 @@ class Admin extends BaseController
                 'menu_title' => 'Taxonomies',
                 'capability' => 'manage_options',
                 'menu_slug'  => 'alicade_taxonomies',
-                'callback'   => function () {
-                    echo '<h1>Taxonomies Manager </h1>';
-                },
+                'callback'   => array($this->callbacks, 'adminTaxonomy'),
             ),
             array(
                 'parent_slug' => 'alicade',
@@ -74,10 +74,55 @@ class Admin extends BaseController
                 'menu_title' => 'Widgets',
                 'capability' => 'manage_options',
                 'menu_slug'  => 'alicade_widget',
-                'callback'   => function () {
-                    echo '<h1>Widget Manger</h1>';
-                },
+                'callback'   => array($this->callbacks, 'adminWidget'),
             ),
         );
+    }
+
+    public function setSettings()
+    {
+        $args = array(
+            array(
+                'option_group' => 'alicad_options_group',
+                'option_name'  => 'text_example',
+                'callback'     => array($this->callbacks, 'alicadOptionsGroup')
+            )
+        );
+
+        $this->settings->setSettings($args);
+    }
+
+    public function setSections()
+    {
+        $args = array(
+            array(
+                'id'        => 'alicade_admin_index',
+                'title'     => 'Settings',
+                'callback'  => array($this->callbacks, 'alicadAdminSection'),
+                'page'      =>  'alicade',
+            )
+        );
+
+        $this->settings->setSections($args);
+    }
+
+    public function setFields()
+    {
+        $args = array(
+            array(
+                'id'        => 'aliced_admin_index',
+                'title'     => 'Settings',
+                'callback'  => array($this->callbacks, 'alicadTextExample'),
+                'page'      =>  'alicade',
+                'section'   => 'alicade_admin_index',
+                'args'      => array(
+                    'label_for' => 'text_example',
+                    'class'     => 'example-class',
+
+                )
+            )
+        );
+
+        $this->settings->setFields($args);
     }
 }
