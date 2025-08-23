@@ -2,33 +2,51 @@
 
 namespace Inc\Pages;
 
-use \Inc\Base\BaseController;
 use \Inc\Api\SettingsApi;
+use \Inc\Base\BaseController;
+use \Inc\Api\CallBacks\AdminCallbacks;
 
 class Admin extends BaseController
 {
     public $settings;
+
+    public $callbacks;
+
     public $pages = array();
+
     public $subpages = array();
 
-    public function __construct()
+    public function register()
     {
         $this->settings = new SettingsApi;
 
+        $this->callbacks = new AdminCallbacks;
+
+        $this->addPages();
+
+        $this->addSubPages();
+
+        $this->settings->addPages($this->pages)->withSubPage('Dashboard')->addSubPages($this->subpages)->register();
+    }
+
+    public function addPages()
+    {
         $this->pages = array(
             array(
                 'page_title' => 'Alicade Plugin',
                 'menu_title' => 'Alicade',
                 'capability' => 'manage_options',
                 'menu_slug'  => 'alicade',
-                'callback'   => function () {
-                    echo '<h1>Plugin</h1>';
-                },
+                'callback'   => array($this->callbacks, 'AdminDashboard'),
                 'icon_url'   => 'dashicons-store',
                 'position'   => 110,
             ),
         );
+    }
 
+
+    public function addSubPages()
+    {
         $this->subpages = array(
             array(
                 'parent_slug' => 'alicade',
@@ -61,10 +79,5 @@ class Admin extends BaseController
                 },
             ),
         );
-    }
-
-    public function register()
-    {
-        $this->settings->addPages($this->pages)->withSubPage('Dashboard')->addSubPages($this->subpages)->register();
     }
 }
