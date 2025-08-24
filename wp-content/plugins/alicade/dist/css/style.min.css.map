@@ -1,0 +1,1 @@
+{"version":3,"sources":["style.scss","style.css"],"names":[],"mappings":"AAAA;EACI,gBAAA;EACA,UAAA;EACA,WAAA;ACCJ","file":"style.min.css","sourcesContent":["body {\r\n    background: teal;\r\n    width: 45%;\r\n    margin: 2em;\r\n}","body {\n  background: teal;\n  width: 45%;\n  margin: 2em;\n}"]}
