@@ -86,6 +86,10 @@ class Admin extends BaseController
                 'option_group' => 'alicad_options_group',
                 'option_name'  => 'text_example',
                 'callback'     => array($this->callbacks, 'alicadOptionsGroup')
+            ),
+            array(
+                'option_group' => 'alicad_options_group',
+                'option_name'  => 'first_name',
             )
         );
 
@@ -110,9 +114,21 @@ class Admin extends BaseController
     {
         $args = array(
             array(
-                'id'        => 'aliced_admin_index',
-                'title'     => 'Settings',
+                'id'        => 'text_example',
+                'title'     => 'Text Example',
                 'callback'  => array($this->callbacks, 'alicadTextExample'),
+                'page'      =>  'alicade',
+                'section'   => 'alicade_admin_index',
+                'args'      => array(
+                    'label_for' => 'text_example',
+                    'class'     => 'example-class',
+
+                )
+            ),
+            array(
+                'id'        => 'first_name',
+                'title'     => 'First Name',
+                'callback'  => array($this->callbacks, 'alicadFirstName'),
                 'page'      =>  'alicade',
                 'section'   => 'alicade_admin_index',
                 'args'      => array(

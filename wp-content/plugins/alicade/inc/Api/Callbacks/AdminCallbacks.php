@@ -40,9 +40,16 @@ class AdminCallbacks extends BaseController
         echo "Check the beautiful section";
     }
 
+
     function alicadTextExample()
     {
         $value = esc_attr(get_option('text_example'));
+        echo '<input type="text" class="regular-text" name="text_example" value="' . $value . '" placeholder="Write something Here!">';
+    }
+
+    function alicadFirstName()
+    {
+        $value = esc_attr(get_option('first_name'));
         echo '<input type="text" class="regular-text" name="text_example" value="' . $value . '" placeholder="Write something Here!">';
     }
 }
