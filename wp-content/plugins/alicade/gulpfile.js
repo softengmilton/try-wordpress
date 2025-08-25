@@ -55,7 +55,7 @@ var htmlWatch    = './src/**/*.html';
 function browser_sync() {
 	browserSync.init({
 		server: {
-			baseDir: './dist/'
+			baseDir: './src/'
 		}
 	});
 }
