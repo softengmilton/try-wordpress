@@ -200,6 +200,7 @@ class Admin extends BaseController
                 'page'      =>  'alicade',
                 'section'   => 'alicade_admin_index',
                 'args'      => array(
+                    'option_name' => 'alecaddd_plugin',
                     'label_for' => 'cpt_manager',
                     'class'     => 'ui-toggle'
 
@@ -212,6 +213,7 @@ class Admin extends BaseController
                 'page'      =>  'alicade',
                 'section'   => 'alicade_admin_index',
                 'args'      => array(
+                    'option_name' => 'alecaddd_plugin',
                     'label_for' => 'taxonomy_manager',
                     'class'     => 'ui-toggle'
 
@@ -224,6 +226,7 @@ class Admin extends BaseController
                 'page'      =>  'alicade',
                 'section'   => 'alicade_admin_index',
                 'args'      => array(
+                    'option_name' => 'alecaddd_plugin',
                     'label_for' => 'media_widget',
                     'class'     => 'ui-toggle'
 
@@ -236,6 +239,7 @@ class Admin extends BaseController
                 'page'      =>  'alicade',
                 'section'   => 'alicade_admin_index',
                 'args'      => array(
+                    'option_name' => 'alecaddd_plugin',
                     'label_for' => 'gallery_manager',
                     'class'     => 'ui-toggle'
 
@@ -248,6 +252,7 @@ class Admin extends BaseController
                 'page'      =>  'alicade',
                 'section'   => 'alicade_admin_index',
                 'args'      => array(
+                    'option_name' => 'alecaddd_plugin',
                     'label_for' => 'testimonial_manager',
                     'class'     => 'ui-toggle'
 
@@ -260,6 +265,7 @@ class Admin extends BaseController
                 'page'      =>  'alicade',
                 'section'   => 'alicade_admin_index',
                 'args'      => array(
+                    'option_name' => 'alecaddd_plugin',
                     'label_for' => 'templates_manager',
                     'class'     => 'ui-toggle'
 
@@ -272,6 +278,7 @@ class Admin extends BaseController
                 'page'      =>  'alicade',
                 'section'   => 'alicade_admin_index',
                 'args'      => array(
+                    'option_name' => 'alecaddd_plugin',
                     'label_for' => 'login_manager',
                     'class'     => 'ui-toggle'
 
@@ -284,6 +291,7 @@ class Admin extends BaseController
                 'page'      =>  'alicade',
                 'section'   => 'alicade_admin_index',
                 'args'      => array(
+                    'option_name' => 'alecaddd_plugin',
                     'label_for' => 'membership_manager',
                     'class'     => 'ui-toggle'
 
@@ -296,6 +304,7 @@ class Admin extends BaseController
                 'page'      =>  'alicade',
                 'section'   => 'alicade_admin_index',
                 'args'      => array(
+                    'option_name' => 'alecaddd_plugin',
                     'label_for' => 'chat_manager',
                     'class'     => 'ui-toggle'
 

@@ -28,22 +28,22 @@ var browserSync  = require( 'browser-sync' ).create();
 
 // Project related variables
 var styleSRC     = './src/scss/style.scss';
-var styleURL     = './dist/css/';
+var styleURL     = './assets/';
 var mapURL       = './';
 
 var jsSRC        = './src/js/';
-var jsFront      = 'main.js';
+var jsFront      = 'script.js';
 var jsFiles      = [ jsFront ];
-var jsURL        = './dist/js/';
+var jsURL        = './assets/';
 
 var imgSRC       = './src/images/**/*';
-var imgURL       = './dist/images/';
+var imgURL       = './assets/images/';
 
 var fontsSRC     = './src/fonts/**/*';
-var fontsURL     = './dist/fonts/';
+var fontsURL     = './assets/fonts/';
 
 var htmlSRC     = './src/**/*.html';
-var htmlURL     = './dist/';
+var htmlURL     = './assets/';
 
 var styleWatch   = './src/scss/**/*.scss';
 var jsWatch      = './src/js/**/*.js';
@@ -74,7 +74,7 @@ function css(done) {
 		}) )
 		.on( 'error', console.error.bind( console ) )
 		.pipe( autoprefixer({ browsers: ['last 2 versions'] }))
-		.pipe( rename( { suffix: '.min' } ) )
+		// .pipe( rename( { suffix: '.min' } ) )
 		.pipe( sourcemaps.write( mapURL ) )
 		.pipe( dest( styleURL ) )
 		.pipe( browserSync.stream() );
@@ -89,9 +89,9 @@ function js(done) {
 		.transform( babelify, { presets: [ '@babel/preset-env' ] } )
 		.bundle()
 		.pipe( source( entry ) )
-		.pipe( rename( {
-			extname: '.min.js'
-        } ) )
+		// .pipe( rename( {
+		// 	extname: '.min.js'
+        // } ) )
 		.pipe( buffer() )
 		.pipe( gulpif( options.has( 'production' ), stripDebug() ) )
 		.pipe( sourcemaps.init({ loadMaps: true }) )
@@ -127,7 +127,7 @@ function watch_files() {
 	watch(imgWatch, series(images, reload));
 	watch(fontsWatch, series(fonts, reload));
 	watch(htmlWatch, series(html, reload));
-	src(jsURL + 'main.min.js')
+	src(jsURL + 'script.js')
 		.pipe( notify({ message: 'Gulp is Watching, Happy Coding!' }) );
 }
 

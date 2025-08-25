@@ -1,20 +1,2 @@
-window.addEventListener("load", function() {
-    let tabs = document.querySelectorAll(".nav-tabs li");
-    let contents = document.querySelectorAll(".tab-content > div");
-
-    tabs.forEach((tab, index) => {
-        tab.addEventListener("click", function() {
-            tabs.forEach(t => t.classList.remove("active"));
-            contents.forEach(c => c.style.display = "none");
-
-            tab.classList.add("active");
-            contents[index].style.display = "block";
-        });
-    });
-
-    // Show the first tab by default
-    if (tabs.length > 0) {
-        tabs[0].classList.add("active");
-        contents[0].style.display = "block";
-    }
-}); 
+!function r(o,i,c){function u(t,e){if(!i[t]){if(!o[t]){var n="function"==typeof require&&require;if(!e&&n)return n(t,!0);if(a)return a(t,!0);throw(e=new Error("Cannot find module '"+t+"'")).code="MODULE_NOT_FOUND",e}n=i[t]={exports:{}},o[t][0].call(n.exports,function(e){return u(o[t][1][e]||e)},n,n.exports,r,o,i,c)}return i[t].exports}for(var a="function"==typeof require&&require,e=0;e<c.length;e++)u(c[e]);return u}({1:[function(e,t,n){window.addEventListener("load",function(){var n=document.querySelectorAll(".nav-tabs li"),r=document.querySelectorAll(".tab-content > div");n.forEach(function(e,t){e.addEventListener("click",function(){n.forEach(function(e){return e.classList.remove("active")}),r.forEach(function(e){return e.style.display="none"}),e.classList.add("active"),r[t].style.display="block"})}),0<n.length&&(n[0].classList.add("active"),r[0].style.display="block")})},{}],2:[function(e,t,n){new((e=e("./app.js"))&&e.__esModule?e:{default:e}).default},{"./app.js":1}]},{},[2]);
+//# sourceMappingURL=script.js.map
