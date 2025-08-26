@@ -7,7 +7,7 @@ use \Inc\Base\BaseController;
 use \Inc\Api\CallBacks\AdminCallbacks;
 use \Inc\Api\CallBacks\ManagerCallbacks;
 
-class Admin extends BaseController
+class Dashboard extends BaseController
 {
     public $settings;
 
@@ -29,13 +29,13 @@ class Admin extends BaseController
 
         $this->addPages();
 
-        $this->addSubPages();
+        // $this->addSubPages();
 
         $this->setSettings();
         $this->setSections();
         $this->setFields();
 
-        $this->settings->addPages($this->pages)->withSubPage('Dashboard')->addSubPages($this->subpages)->register();
+        $this->settings->addPages($this->pages)->withSubPage('Dashboard')->register();
     }
 
     public function addPages()
@@ -54,35 +54,35 @@ class Admin extends BaseController
     }
 
 
-    public function addSubPages()
-    {
-        $this->subpages = array(
-            array(
-                'parent_slug' => 'alicade',
-                'page_title' => 'Custom Post Type',
-                'menu_title' => 'Cpt',
-                'capability' => 'manage_options',
-                'menu_slug'  => 'alicade_cpt',
-                'callback'   => array($this->callbacks, 'adminCpt'),
-            ),
-            array(
-                'parent_slug' => 'alicade',
-                'page_title' => 'Taxonomies',
-                'menu_title' => 'Taxonomies',
-                'capability' => 'manage_options',
-                'menu_slug'  => 'alicade_taxonomies',
-                'callback'   => array($this->callbacks, 'adminTaxonomy'),
-            ),
-            array(
-                'parent_slug' => 'alicade',
-                'page_title' => 'Widgets',
-                'menu_title' => 'Widgets',
-                'capability' => 'manage_options',
-                'menu_slug'  => 'alicade_widget',
-                'callback'   => array($this->callbacks, 'adminWidget'),
-            ),
-        );
-    }
+    // public function addSubPages()
+    // {
+    //     $this->subpages = array(
+    //         array(
+    //             'parent_slug' => 'alicade',
+    //             'page_title' => 'Custom Post Type',
+    //             'menu_title' => 'Cpt',
+    //             'capability' => 'manage_options',
+    //             'menu_slug'  => 'alicade_cpt',
+    //             'callback'   => array($this->callbacks, 'adminCpt'),
+    //         ),
+    //         array(
+    //             'parent_slug' => 'alicade',
+    //             'page_title' => 'Taxonomies',
+    //             'menu_title' => 'Taxonomies',
+    //             'capability' => 'manage_options',
+    //             'menu_slug'  => 'alicade_taxonomies',
+    //             'callback'   => array($this->callbacks, 'adminTaxonomy'),
+    //         ),
+    //         array(
+    //             'parent_slug' => 'alicade',
+    //             'page_title' => 'Widgets',
+    //             'menu_title' => 'Widgets',
+    //             'capability' => 'manage_options',
+    //             'menu_slug'  => 'alicade_widget',
+    //             'callback'   => array($this->callbacks, 'adminWidget'),
+    //         ),
+    //     );
+    // }
     public function setSettings()
     {
         $args = array(

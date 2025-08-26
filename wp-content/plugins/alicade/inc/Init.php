@@ -15,15 +15,15 @@ final class Init
     public static function get_services()
     {
         return [
-            Pages\Admin::class,
+            Pages\Dashboard::class,
             Base\Enqueue::class,
             Base\SettingsLinks::class,
-            Base\BaseController::class
+            Base\CustomPostTypeController::class,
         ];
     }
 
     /**
-     * Loop through the classes, initialize them,
+     * Loop through the classes, initialize them,                         
      * and call the register() method if it exists
      * @return [type] [description]
      */
