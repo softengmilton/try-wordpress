@@ -85,34 +85,30 @@ class Admin extends BaseController
     }
     public function setSettings()
     {
-        $args = array();
-        foreach ($this->managers as $key => $value) {
-            $args[] = array(
-                'option_group' => 'alicad_plugin_settings',
-                'option_name'  => $key,
-                'callback'     => array($this->callbacks, 'checkboxSanitize')
-            );
-        }
+        $args = array(
+            array(
+                'option_group' => 'alicade_plugin_settings',
+                'option_name' => 'alicade',
+                'callback' => array($this->callbacks_mngr, 'checkboxSanitize')
+            )
+        );
 
         $this->settings->setSettings($args);
     }
-
-
 
     public function setSections()
     {
         $args = array(
             array(
-                'id'        => 'alicade_admin_index',
-                'title'     => 'Settings Manger',
-                'callback'  => array($this->callbacks_mngr, 'adminSectionManager'),
-                'page'      =>  'alicade',
+                'id' => 'alicade_admin_index',
+                'title' => 'Settings Manager',
+                'callback' => array($this->callbacks_mngr, 'adminSectionManager'),
+                'page' => 'alicade'
             )
         );
 
         $this->settings->setSections($args);
     }
-
 
     public function setFields()
     {
@@ -120,19 +116,19 @@ class Admin extends BaseController
 
         foreach ($this->managers as $key => $value) {
             $args[] = array(
-                'id'        => $key,
-                'title'     => 'Activate ' . $value,
-                'callback'  => array($this->callbacks_mngr, 'checkboxField'),
-                'page'      => 'alicade',
-                'section'   => 'alicade_admin_index',
-                'args'      => array(
-                    'option_name' => 'alicade_plugin', // consistent with setSettings
-                    'label_for'   => $key,
-                    'class'       => 'ui-toggle'
+                'id' => $key,
+                'title' => $value,
+                'callback' => array($this->callbacks_mngr, 'checkboxField'),
+                'page' => 'alicade',
+                'section' => 'alicade_admin_index',
+                'args' => array(
+                    'option_name' => 'alicade',
+                    'label_for' => $key,
+                    'class' => 'ui-toggle'
                 )
             );
         }
 
-        $this->settings->setFields($args); // actually register fields
+        $this->settings->setFields($args);
     }
 }

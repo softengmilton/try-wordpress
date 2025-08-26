@@ -11,17 +11,19 @@ use Inc\Base\BaseController;
 class ManagerCallbacks extends BaseController
 {
 
-    function checkboxSanitize($input)
+    public function checkboxSanitize($input)
     {
+        $output = array();
 
-        // return filter_var($input, FILTER_SANITIZE_NUMBER_INT);
+        foreach ($this->managers as $key => $value) {
+            $output[$key] = isset($input[$key]) ? true : false;
+        }
 
-        return (isset($input) ? true : false);
+        return $output;
     }
-
-    function adminSectionManager()
+    public function adminSectionManager()
     {
-        echo "Manage the Sections and Features of this Plugin by activating the checkboxes from the following list";
+        echo 'Manage the Sections and Features of this Plugin by activating the checkboxes from the following list.';
     }
 
     public function checkboxField($args)

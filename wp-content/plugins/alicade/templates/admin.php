@@ -14,7 +14,7 @@
             <form action="options.php" method="post">
                 <?php
 
-                settings_fields('alicad_plugin_settings');
+                settings_fields('alicade_plugin_settings');
                 do_settings_sections('alicade');
                 submit_button();
 
