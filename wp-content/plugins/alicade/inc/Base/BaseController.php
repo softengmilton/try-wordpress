@@ -32,4 +32,11 @@ class BaseController
             'chat_manager'       => 'Chat Manager',
         );
     }
+
+    public function activated($key)
+    {
+        $option = get_option('alicade');
+        $activated = isset($option[$key]) ? $option[$key] : false;
+        return $activated;
+    }
 }
